@@ -11,7 +11,9 @@ import java.util.Optional;
 public interface PacoteRepository extends JpaRepository<Pacote, Long> {
 
     Optional<Pacote> findById(Long id);
+    List<Optional<Pacote>> findByCdPedido(Long cdPedido);
     List<Optional<Pacote>> findByFornecedor(String fornecedor);
     List<Optional<Pacote>> findByTamanho(String tamanho);
+
 
 }

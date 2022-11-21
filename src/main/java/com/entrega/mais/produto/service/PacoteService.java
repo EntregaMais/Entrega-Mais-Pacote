@@ -19,6 +19,10 @@ public class PacoteService {
         return pacoteRepository.findById(id);
     }
 
+    public  Optional<Pacote> encontraPacotePorCdPedido(Long cdPedido){
+        return pacoteRepository.findByCdPedido(cdPedido).get(0);
+    }
+
     public List<Optional<Pacote>> encontraPacotesPorFornecedor(String fornecedor){
         return pacoteRepository.findByFornecedor(fornecedor);
     }

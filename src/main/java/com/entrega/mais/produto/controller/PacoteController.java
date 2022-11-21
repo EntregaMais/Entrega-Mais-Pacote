@@ -22,9 +22,19 @@ public class PacoteController {
     @Autowired
     private PacoteService pacoteService;
 
-    @RequestMapping(value = "/pacotePorId/{id", method = RequestMethod.GET)
+    @RequestMapping(value = "/pacotePorId/{id}", method = RequestMethod.GET)
     public ResponseEntity<Pacote> GetById (@PathVariable(value = "id") Long id){
         Optional<Pacote> pacote = pacoteService.encontraPacotePorId(id);
+        if(pacote.isPresent())
+            return new ResponseEntity<Pacote>(pacote.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/pacotePorCdPedido/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Pacote> GetByCdPedido (@PathVariable(value = "id") Long id){
+        Optional<Pacote> pacote = pacoteService.encontraPacotePorCdPedido(id);
+
         if(pacote.isPresent())
             return new ResponseEntity<Pacote>(pacote.get(), HttpStatus.OK);
         else
