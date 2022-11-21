@@ -30,8 +30,5 @@ public class Pacote implements Serializable {
 
     private String observacao;
 
-    private int fornPagouFrete;
-
-    private String quemPagaTaxa;
 
 }

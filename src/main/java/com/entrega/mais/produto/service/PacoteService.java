@@ -42,8 +42,6 @@ public class PacoteService {
             pacoteExistente.setTelefoneFornecedor(pacote_atualizado.getTelefoneFornecedor());
             pacoteExistente.setTamanho(pacote_atualizado.getTamanho());
             pacoteExistente.setObservacao(pacote_atualizado.getObservacao());
-            pacoteExistente.setFornPagouFrete(pacote_atualizado.getFornPagouFrete());
-            pacoteExistente.setQuemPagaTaxa(pacote_atualizado.getQuemPagaTaxa());
 
             Pacote pacotetualizada = pacoteRepository.save(pacoteExistente);
 
