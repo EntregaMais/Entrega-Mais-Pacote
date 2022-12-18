@@ -46,7 +46,7 @@ public class PacoteController {
         return ResponseEntity.ok(pacoteService.salvarPacote(pacote));
     }
 
-    @PostMapping("/pacoteEdicao/{id}/")
+    @PostMapping("/pacoteEdicao/{id}")
     public ResponseEntity<Pacote> editar (@PathVariable(value = "id") Long id, @RequestBody Pacote pacote){
 
         Pacote pacoteAtualizada = pacoteService.atualizarPacote(id,pacote);
