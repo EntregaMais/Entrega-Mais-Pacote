@@ -1,0 +1,58 @@
+version: '3.9'
+services:
+  app:
+    container_name: pacote_app_container
+    build: .
+    volumes:
+      - pacote-app-data:/app
+    ports:
+      - "7750:7750"
+    networks:
+      - entregamaisnetwork
+    depends_on:
+      - postgres
+    restart: on-failure
+
+  postgres:
+    container_name: pacote_postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ifpb
+      POSTGRES_PASSWORD: ifpb
+      PGDATA: /data/postgres
+    volumes:
+      - pacote-postgres-data:/data/postgres
+      - pacote-postgres-db-data:/var/lib/postgresql/data
+    ports:
+      - "7751:5432"
+    networks:
+      - entregamaisnetwork
+    restart: unless-stopped
+
+  # pgadmin:
+  #   container_name: pgadmin_container
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: ifpb@ifpb.edu.br
+  #     PGADMIN_DEFAULT_PASSWORD: ifpb
+  #     PGADMIN_CONFIG_SERVER_MODE: 'False'
+  #   volumes:
+  #     - pgadmin-data:/var/lib/pgadmin
+  #   ports:
+  #     - "7000:80"
+  #   networks:
+  #     - entregamaisnetwork
+  #   depends_on:
+  #     - postgres
+  #   restart: unless-stopped
+
+networks:
+  entregamaisnetwork:
+    name: entregamaisnetwork
+
+volumes:
+  pacote-app-data:
+  pacote-postgres-data:
+  pacote-postgres-db-data:
+  
+  # pacote-pgadmin-data:
